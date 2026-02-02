@@ -7,7 +7,7 @@ First install `requirements.txt` and simply run the bash script `run.bash`.
 This script assumes an instance with at least 8 GPUs and runs our method with 8 pipeline stages.
 Tested on PyTorch 2.5.1, CUDA 12.6, and Python 3.12.
 
-## Credits
+## Acknowledgements
 - [PipeDream](https://github.com/msr-fiddle/pipedream)
 - [PiPPy](https://pytorch.org/docs/2.5/distributed.pipelining.html)
 - [NanoGPT](https://github.com/karpathy/nanoGPT)
@@ -26,3 +26,4 @@ This project is licensed under the MIT License. See the LICENSE file for details
   year={2025}
 }
 ```
+
