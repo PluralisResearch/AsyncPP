@@ -151,7 +151,7 @@ parser.add_argument('--grad_estimation_decay', default=0.04, type=float,
 parser.add_argument('--grad_est_correction', action='store_true',
                     help='Downweight the gradient estimation for large delay, follow pipemare style')
 parser.add_argument('--grad_est_correction_epoch', default=7, type=int,
-                    help='Downweight the gradient estimation for large delay, follow pipemare style, analagous to lr_correction_epoch')
+                    help='Downweight the gradient estimation for large delay, follow pipemare style, analogous to lr_correction_epoch')
 parser.add_argument('--clip_grad', default=None, type=float,
                     help='Clip gradient norm using this value')
 parser.add_argument('--deterministic', action='store_true',
