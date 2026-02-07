@@ -27,7 +27,7 @@ done
 wait
 
 # gpipe
-basecmdstr="python sync_main.py $model $batch -d $d $dd --master_addr localhost --distributed_backend nccl 
+basecmdstr="python sync_main.py $model $batch -d $d --master_addr localhost --distributed_backend nccl
 $lr $epochs $minibatches $cg $logtb --recompute --lr_policy cosine --optimizer adamw"
 
 # gpipe
