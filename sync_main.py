@@ -32,7 +32,7 @@ import torch.distributed.pipelining as pp
 from data_utils import ShakespeareDataset, WikiTextDataset, OpenWebTextDataset, BookCorpusDataset, DataUtil
 from transformers import AutoTokenizer
 
-parser = argparse.ArgumentParser(description='PyTorch ImageNet Training')
+parser = argparse.ArgumentParser(description='AsyncPP Sync Baseline Training')
 parser.add_argument('--data_dir', '-dd', type=str, default='~/data',
                     help='path to dataset')
 parser.add_argument('--dataset_name', '-d', type=str,
@@ -300,7 +300,8 @@ def main():
         'stage_to_depth_map': None
     }
     if args.config_path is not None:
-        json_config_file = json.load(open(args.config_path, 'r'))
+        with open(args.config_path, 'r') as f:
+            json_config_file = json.load(f)
         configuration_maps['module_to_stage_map'] = json_config_file.get("module_to_stage_map", None)
         configuration_maps['stage_to_rank_map'] = json_config_file.get("stage_to_rank_map", None)
         configuration_maps['stage_to_rank_map'] = {
@@ -369,7 +370,7 @@ def main():
         checkpoint_file_path = "%s.%d.pth.tar" % (args.resume, args.stage)
         assert os.path.isfile(checkpoint_file_path)
         print("=> loading checkpoint '{}'".format(checkpoint_file_path))
-        checkpoint = torch.load(checkpoint_file_path)
+        checkpoint = torch.load(checkpoint_file_path, weights_only=False)
         args.start_epoch = checkpoint['epoch']
         best_loss = checkpoint['best_loss']
         pp_stage.submod.load_state_dict(checkpoint['state_dict'])

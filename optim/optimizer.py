@@ -84,7 +84,7 @@ class OptimizerWithWeightStashing(torch.optim.Optimizer):
     def get_from_queue(self, index):
         if self.save_dir is not None:
             fname = self.queue[index]
-            d = torch.load(fname)
+            d = torch.load(fname, weights_only=False)
             return d["state_dicts"], d["version"]
         else:
             return self.queue[index]

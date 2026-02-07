@@ -2,13 +2,14 @@
 # Licensed under the MIT license.
 
 import threading
+from collections import deque
 
 """
 Implementation of a thread-safe queue with one producer and one consumer.
 """
 class Queue:
     def __init__(self):
-        self.queue = []
+        self.queue = deque()
         self.cv = threading.Condition()
 
     def add(self, tensor):
@@ -21,6 +22,6 @@ class Queue:
         self.cv.acquire()
         while len(self.queue) == 0:
             self.cv.wait()
-        tensor = self.queue.pop(0)
+        tensor = self.queue.popleft()
         self.cv.release()
         return tensor
